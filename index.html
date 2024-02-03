@@ -63,6 +63,14 @@
         h1.light-mode {
             color: #00F00F;
         }
+
+        p {
+           color: #000000; 
+        }
+
+        p.light-mode {
+            color: #FFFFFF;
+        }
                 
         .icon-link {
             color: #1E90FF;
@@ -113,7 +121,6 @@
             <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
         </header>
     </div>
-
 <script>
     const button = document.getElementById("darkmodebutton");
     
@@ -122,57 +129,42 @@
         element.classList.add('light-mode');
         const head = document.querySelector('header');
         head.classList.add('light-mode');
-        const ae = document.querySelectorAll('a');
+        const ae = document.querySelectorAll('.icon-link');
         ae.forEach(anchor => {
-        anchor.classList.add('light-mode');
+            anchor.classList.add('light-mode');
         });
-        const he = document.querySelectorAll('hr');
-        he.forEach(hline => {
-        hline.classList.add('light-mode');
-        });
-        const icon = document.querySelector('icon-link');
-        icon.classList.add('light-mode');
     }
-
+    
     function toggleLightMode() {
         const element = document.querySelector('body');
         element.classList.remove('light-mode');
         const head = document.querySelector('header');
         head.classList.remove('light-mode');
-        const ae = document.querySelectorAll('a');
+        const ae = document.querySelectorAll('.icon-link');
         ae.forEach(anchor => {
-        anchor.classList.remove('light-mode');
+            anchor.classList.remove('light-mode');
         });
-        const he = document.querySelectorAll('hr');
-        he.forEach(hline => {
-        hline.classList.remove('light-mode');
-        });
-        const icon = document.querySelector('icon-link');
-        icon.classList.remove('light-mode');
     }
     
     button.addEventListener("click", function () {
         if (button.textContent == "☀️") {
             button.textContent = "🌙";
             localStorage.setItem('preferred-theme', 'light');
-            toggleLightMode();
-            
+            toggleDarkMode();
         } else if  (button.textContent == "🌙") {
             button.textContent = "☀️";
             localStorage.setItem('preferred-theme', 'dark');
-            toggleDarkMode();
-            
-        }    });
-    const userPreference = localStorage.getItem('preferred-theme')
+            toggleLightMode();
+        }
+    });
+    
+    const userPreference = localStorage.getItem('preferred-theme');
     if (userPreference === 'dark') {
-        
-        button.textContent = "🌙"; // Enable dark mode
-        toggleLightMode();
-      } else if (userPreference === 'light'){
-        
-        button.textContent = "☀️";
-
         toggleDarkMode();
+        button.textContent = "🌙"; // Enable dark mode
+    } else if (userPreference === 'light'){
+        toggleLightMode();
+        button.textContent = "☀️";
     }
 </script>
 </body>
