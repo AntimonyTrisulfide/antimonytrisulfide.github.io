@@ -26,11 +26,20 @@
             margin: 0 auto;
         }
 
+        .container.dark-mode {
+            background-color: black;
+            color: #fff8e7;
+        }
+
         .header {
             position: relative;
             background-color: rgba(51, 51, 51, 0.9);
             color: #fff;
             padding: 10px;
+        }
+
+        .header.dark-mode {
+            background-color: rgba(112, 128, 114, 0.9);
         }
   
         body {
@@ -42,10 +51,19 @@
             background-attachment: fixed;
         }
 
+        body.dark-mode {
+            background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background.png');
+        }
+
         h1 {
             font-family: 'CustomFont', 'Verdana', sans-serif;
             color: #1E90FF;
         }
+
+        h1.dark-mode {
+            color: #0FF0FF;
+        }
+                
         .icon-link {
             color: #1E90FF;
             font-size: 30px;
@@ -53,9 +71,13 @@
             text-decoration: none;
         }
 
+        .icon-link.dark-mode {
+            color: #fff8e7;
+        }
+
         .dark-mode-button {
         font-family: 'Karma';
-        position: absolute; /* Change from fixed to absolute */
+        position: absolute;
         top: 20px;
         right: 20px;
         font-size: 30px;
