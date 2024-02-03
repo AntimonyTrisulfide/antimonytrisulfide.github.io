@@ -13,35 +13,35 @@
             font-weight: normal;
             font-style: normal;
         }
-
+        
         @font-face {
             font-family: 'CustomFont2';
             src: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/font2.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
-          
+              
         .container {
             width: 80%;
             margin: 0 auto;
         }
-
+        
         .container.light-mode {
             background-color: black;
             color: #fff8e7;
         }
-
+        
         .header {
             position: relative;
             background-color: rgba(112, 128, 114, 0.9);
-            color: #fff;
             padding: 10px;
         }
-
+        
         .header.light-mode {
             background-color: rgba(51, 51, 51, 0.9);
+            color: #fff;
         }
-  
+        
         body {
             font-family: 'CustomFont2', 'Verdana', sans-serif;
             background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background.png');
@@ -50,39 +50,39 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-
+        
         body.light-mode {
             background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background2.jpg');
         }
-
+        
         h1 {
             font-family: 'CustomFont', 'Verdana', sans-serif;
             color: #1E90FF;
         }
-
+        
         h1.light-mode {
-            color: #00F00F;
+            color: #1E90FF;
         }
-
+        
         p {
            color: #FFFFFF; 
         }
-
+        
         p.light-mode {
-            color: #000000;
+          color: cyan;
         }
-                
+        
         .icon-link {
             color: #1E90FF;
             font-size: 30px;
             margin-right: 10px;
             text-decoration: none;
         }
-
+        
         .icon-link.light-mode {
             color: #fff8e7;
         }
-
+        
         .dark-mode-button {
         font-family: 'Karma';
         position: absolute;
@@ -97,7 +97,7 @@
         }
     </style>
 </head>
-<body>
+<body class ="light-mode">
     <div class="container">
         <header class="header">
             <button class="dark-mode-button" id="darkmodebutton">☀️</button>
