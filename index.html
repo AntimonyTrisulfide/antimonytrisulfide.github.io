@@ -26,7 +26,7 @@
             margin: 0 auto;
         }
 
-        .container.dark-mode {
+        .container.light-mode {
             background-color: black;
             color: #fff8e7;
         }
@@ -38,21 +38,21 @@
             padding: 10px;
         }
 
-        .header.dark-mode {
+        .header.light-mode {
             background-color: rgba(112, 128, 114, 0.9);
         }
   
         body {
             font-family: 'CustomFont2', 'Verdana', sans-serif;
-            background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background2.jpg');
+            background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
 
-        body.dark-mode {
-            background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background.png');
+        body.light-mode {
+            background-image: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/background2.png');
         }
 
         h1 {
@@ -60,7 +60,7 @@
             color: #1E90FF;
         }
 
-        h1.dark-mode {
+        h1.light-mode {
             color: #0FF0FF;
         }
                 
@@ -71,7 +71,7 @@
             text-decoration: none;
         }
 
-        .icon-link.dark-mode {
+        .icon-link.light-mode {
             color: #fff8e7;
         }
 
@@ -119,60 +119,60 @@
     
     function toggleDarkMode() {
         const element = document.querySelector('body');
-        element.classList.add('dark-mode');
+        element.classList.add('light-mode');
         const head = document.querySelector('header');
-        head.classList.add('dark-mode');
+        head.classList.add('light-mode');
         const ae = document.querySelectorAll('a');
         ae.forEach(anchor => {
-        anchor.classList.add('dark-mode');
+        anchor.classList.add('light-mode');
         });
         const he = document.querySelectorAll('hr');
         he.forEach(hline => {
-        hline.classList.add('dark-mode');
+        hline.classList.add('light-mode');
         });
         const icon = document.querySelector('icon-link');
-        icon.classList.add('dark-mode');
+        icon.classList.add('light-mode');
     }
 
     function toggleLightMode() {
         const element = document.querySelector('body');
-        element.classList.remove('dark-mode');
+        element.classList.remove('light-mode');
         const head = document.querySelector('header');
-        head.classList.remove('dark-mode');
+        head.classList.remove('light-mode');
         const ae = document.querySelectorAll('a');
         ae.forEach(anchor => {
-        anchor.classList.remove('dark-mode');
+        anchor.classList.remove('light-mode');
         });
         const he = document.querySelectorAll('hr');
         he.forEach(hline => {
-        hline.classList.remove('dark-mode');
+        hline.classList.remove('light-mode');
         });
         const icon = document.querySelector('icon-link');
-        icon.classList.remove('dark-mode');
+        icon.classList.remove('light-mode');
     }
     
     button.addEventListener("click", function () {
         if (button.textContent == "☀️") {
             button.textContent = "🌙";
-            localStorage.setItem('preferred-theme', 'dark');
-            toggleDarkMode();
+            localStorage.setItem('preferred-theme', 'light');
+            toggleLightMode();
             
         } else if  (button.textContent == "🌙") {
             button.textContent = "☀️";
-            localStorage.setItem('preferred-theme', 'light');
-            toggleLightMode();
+            localStorage.setItem('preferred-theme', 'dark');
+            toggleDarkMode();
             
         }    });
     const userPreference = localStorage.getItem('preferred-theme')
     if (userPreference === 'dark') {
         
         button.textContent = "🌙"; // Enable dark mode
-        toggleDarkMode();
+        toggleLightMode();
       } else if (userPreference === 'light'){
         
         button.textContent = "☀️";
 
-        toggleLightMode();
+        toggleDarkMode();
     }
 </script>
 </body>
