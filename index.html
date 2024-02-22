@@ -123,7 +123,7 @@
     </div>
 <script>
     const button = document.getElementById("darkmodebutton");
-    
+
     function toggleDarkMode() {
         const element = document.querySelector('body');
         element.classList.add('light-mode');
@@ -133,8 +133,9 @@
         ae.forEach(anchor => {
             anchor.classList.add('light-mode');
         });
+        localStorage.setItem('preferred-theme', 'light'); // Store preference in local storage
     }
-    
+
     function toggleLightMode() {
         const element = document.querySelector('body');
         element.classList.remove('light-mode');
@@ -144,28 +145,30 @@
         ae.forEach(anchor => {
             anchor.classList.remove('light-mode');
         });
+        localStorage.setItem('preferred-theme', 'dark'); // Store preference in local storage
     }
-    
+
     button.addEventListener("click", function () {
         if (button.textContent == "☀️") {
             button.textContent = "🌙";
-            localStorage.setItem('preferred-theme', 'light');
             toggleDarkMode();
         } else if  (button.textContent == "🌙") {
             button.textContent = "☀️";
-            localStorage.setItem('preferred-theme', 'dark');
             toggleLightMode();
         }
     });
-    
-    const userPreference = localStorage.getItem('preferred-theme');
-    if (userPreference === 'dark') {
-        toggleDarkMode();
-        button.textContent = "🌙"; // Enable dark mode
-    } else if (userPreference === 'light'){
-        toggleLightMode();
-        button.textContent = "☀️";
-    }
+
+    // Check local storage for user preference on page load
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const userPreference = localStorage.getItem('preferred-theme');
+        if (userPreference === 'dark') {
+            toggleLightMode(); // If dark mode is preferred, switch to light mode
+            button.textContent = "☀️";
+        } else if (userPreference === 'light'){
+            toggleDarkMode(); // If light mode is preferred, switch to dark mode
+            button.textContent = "🌙";
+        }
+    });
 </script>
 </body>
 </html>
