@@ -21,9 +21,18 @@
             font-style: normal;
         }
 
+        .wrapper {
+            display: flex;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
         .navigation {
-            border: 2px solid black;   
-            height: auto;
+            width: 200px;
+            border: 2px solid black;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -31,7 +40,7 @@
             flex-wrap: wrap;
         }
 
-        .box{
+        .box {
             height: 75px;
             width: 75px;
             background-color: purple;
@@ -115,95 +124,97 @@
         }
     </style>
 </head>
-<body class ="light-mode">
-    <div>
-    <div class="navigation">
-        <div class="box" id="box1">
-            <h1><a href="https://antimonytrisulfide.github.io/index.html">Home</a></h1>
+<body class="light-mode">
+    <div class="wrapper">
+        <div class="main-content">
+            <div class="container">
+                <header class="header">
+                    <button class="dark-mode-button" id="darkmodebutton">☀️</button>
+                    <h1>Welcome, Fellow Visitor!</h1>
+                    <h2>This is Manav Marmat's Website</h2>
+                    <h3><b>About Me</b></h3>
+                    <p>A C++ programmer currently learning Electronics and Communication Engineering at MANIT Bhopal (Maulana Azad National Institute of Technology).</p>
+                    <p>My journey involves navigating the world of code, embracing continuous learning, and honing my skills.
+                    Beyond coding, I'm a passionate esports enthusiast, finding inspiration in the intensity of competitive gaming. 
+                    Gaming isn't just a hobby; it's a source of connection with a global community.
+                    Away from the screen, I'm a foodie, savoring the diverse flavors life has to offer. 
+                    This website is my space to share coding adventures and gaming thrills.
+                    Always ready to learn and connect with fellow enthusiasts!
+                    </p>
+                    <h3>Find me on</h3>
+                    <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+                    <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                    <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+                    <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                </header>
+            </div>
         </div>
-        <div class="box" id="box2">
-            <h1><a href="https://antimonytrisulfide.github.io/portfolio.html">Portfolio</a></h1>
-        </div>
-        <div class="box" id="box3">
-            <h1><a href="https://antimonytrisulfide.github.io/blog.html">Blog</a></h1>
-        </div>
-        <div class="box" id="box4">
-            <h1><a href="https://antimonytrisulfide.github.io/cv.html">CV</a></h1>
+        <div class="navigation">
+            <div class="box" id="box1">
+                <h1><a href="https://antimonytrisulfide.github.io/index.html">Home</a></h1>
+            </div>
+            <div class="box" id="box2">
+                <h1><a href="https://antimonytrisulfide.github.io/portfolio.html">Portfolio</a></h1>
+            </div>
+            <div class="box" id="box3">
+                <h1><a href="https://antimonytrisulfide.github.io/blog.html">Blog</a></h1>
+            </div>
+            <div class="box" id="box4">
+                <h1><a href="https://antimonytrisulfide.github.io/cv.html">CV</a></h1>
+            </div>
         </div>
     </div>
-        
-    <div class="container">
-        <header class="header">
-            <button class="dark-mode-button" id="darkmodebutton">☀️</button>
-            <h1>Welcome, Fellow Visitor!</h1>
-            <h2>This is Manav Marmat's Website</h2>
-            <h3><b>About Me</b></h3>
-            <p>A C++ programmer currently learning Electronics and Communication Engineering at MANIT Bhopal (Maulana Azad National Institute of Technology).</p>
-            <p>My journey involves navigating the world of code, embracing continuous learning, and honing my skills.
-            Beyond coding, I'm a passionate esports enthusiast, finding inspiration in the intensity of competitive gaming. 
-            Gaming isn't just a hobby; it's a source of connection with a global community.
-            Away from the screen, I'm a foodie, savoring the diverse flavors life has to offer. 
-            This website is my space to share coding adventures and gaming thrills.
-            Always ready to learn and connect with fellow enthusiasts!
-            </p>
-            <h3>Find me on</h3>
-            <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
-            <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
-            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
-            <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
-        </header>
-    </div>
-    </div>
-<script>
-    const button = document.getElementById("darkmodebutton");
 
-    function toggleDarkMode() {
-        const element = document.querySelector('body');
-        element.classList.add('light-mode');
-        const head = document.querySelector('header');
-        head.classList.add('light-mode');
-        const ae = document.querySelectorAll('.icon-link');
-        ae.forEach(anchor => {
-            anchor.classList.add('light-mode');
-        });
-        localStorage.setItem('preferred-theme', 'light'); // Store preference in local storage
-    }
+    <script>
+        const button = document.getElementById("darkmodebutton");
 
-    function toggleLightMode() {
-        const element = document.querySelector('body');
-        element.classList.remove('light-mode');
-        const head = document.querySelector('header');
-        head.classList.remove('light-mode');
-        const ae = document.querySelectorAll('.icon-link');
-        ae.forEach(anchor => {
-            anchor.classList.remove('light-mode');
-        });
-        localStorage.setItem('preferred-theme', 'dark'); // Store preference in local storage
-    }
-
-    button.addEventListener("click", function () {
-        if (button.textContent == "☀️") {
-            button.textContent = "🌙";
-            toggleDarkMode();
-        } else if  (button.textContent == "🌙") {
-            button.textContent = "☀️";
-            toggleLightMode();
+        function toggleDarkMode() {
+            const element = document.querySelector('body');
+            element.classList.add('light-mode');
+            const head = document.querySelector('header');
+            head.classList.add('light-mode');
+            const ae = document.querySelectorAll('.icon-link');
+            ae.forEach(anchor => {
+                anchor.classList.add('light-mode');
+            });
+            localStorage.setItem('preferred-theme', 'light'); // Store preference in local storage
         }
-    });
 
-    // Check local storage for user preference on page load
-    window.addEventListener('DOMContentLoaded', (event) => {
-        const userPreference = localStorage.getItem('preferred-theme');
-        if (userPreference === 'dark') {
-            toggleLightMode(); // If dark mode is preferred, switch to light mode
-            button.textContent = "☀️";
-        } else if (userPreference === 'light'){
-            toggleDarkMode(); // If light mode is preferred, switch to dark mode
-            button.textContent = "🌙";
+        function toggleLightMode() {
+            const element = document.querySelector('body');
+            element.classList.remove('light-mode');
+            const head = document.querySelector('header');
+            head.classList.remove('light-mode');
+            const ae = document.querySelectorAll('.icon-link');
+            ae.forEach(anchor => {
+                anchor.classList.remove('light-mode');
+            });
+            localStorage.setItem('preferred-theme', 'dark'); // Store preference in local storage
         }
-    });
-</script>
+
+        button.addEventListener("click", function () {
+            if (button.textContent == "☀️") {
+                button.textContent = "🌙";
+                toggleDarkMode();
+            } else if  (button.textContent == "🌙") {
+                button.textContent = "☀️";
+                toggleLightMode();
+            }
+        });
+
+        // Check local storage for user preference on page load
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const userPreference = localStorage.getItem('preferred-theme');
+            if (userPreference === 'dark') {
+                toggleLightMode(); // If dark mode is preferred, switch to light mode
+                button.textContent = "☀️";
+            } else if (userPreference === 'light'){
+                toggleDarkMode(); // If light mode is preferred, switch to dark mode
+                button.textContent = "🌙";
+            }
+        });
+    </script>
 </body>
 </html>
