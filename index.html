@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <style>
+        
         @font-face {
             font-family: 'CustomFont';
             src: url('https://raw.githubusercontent.com/AntimonyTrisulfide/antimonytrisulfide.github.io/main/font.woff') format('woff');
@@ -31,12 +32,18 @@
         }
 
         .navigation {
-            width: 100%;
+            width: 10%;
             display: flex;
-            justify-content: center;
+            position: fixed; /* Change position to fixed */
+            top: 0; /* Adjusted top position */
+            bottom: 0; /* Added bottom position */
+            flex-direction: column;
+            justify-content: top;
             align-items: center;
-            padding: 20px 0; /* Added padding */
+            padding: 20px 0;
+            z-index: 999; /* Added z-index to ensure it's above other content */
         }
+
         
         .box {
             height: 50px; /* Reduced height */
@@ -44,6 +51,8 @@
             background-color: rgba(51, 51, 51, 0.9);
             margin: 0 10px; /* Increased margin */
             display: flex;
+            position: sticky;
+            top: 0px;
             justify-content: center;
             align-items: center;
             border-radius: 10px; /* Added border-radius for rounded corners */
