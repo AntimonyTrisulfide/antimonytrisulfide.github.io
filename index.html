@@ -30,29 +30,43 @@
             padding: 20px;
         }
 
-         .navigation {
-            width: 100px;
-            height: 600px; /* Changed 'length' to 'height' */
+        .navigation {
+            width: 100%;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            position: sticky;
-            top: 15%; /* Specify the sticky positioning */
             align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .li {
-            align-items:center;
-            color: white;
+            padding: 20px 0; /* Added padding */
         }
         
         .box {
-            height: 75px;
-            width: 75px;
-            align-items: center;
+            height: 50px; /* Reduced height */
+            width: 100px; /* Adjusted width */
             background-color: rgba(51, 51, 51, 0.9);
-            margin: 2px;
+            margin: 0 10px; /* Increased margin */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; /* Added border-radius for rounded corners */
+        }
+        
+        .box:hover {
+            background-color: rgba(51, 51, 51, 0.7); /* Darken background on hover */
+        }
+        
+        .box li {
+            list-style-type: none;
+        }
+        
+        .box a {
+            text-decoration: none;
+            color: #fff; /* Changed link color */
+            font-weight: bold; /* Added font weight */
+            font-size: 16px; /* Adjusted font size */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+        
+        .box a:hover {
+            color: #1E90FF; /* Change link color on hover */
         }
         
         .container {
