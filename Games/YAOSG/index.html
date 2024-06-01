@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+    <title>Snake Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        canvas {
+            border: 5px solid #000000;
+            background-color: #000000;
+            z-index: 0;
+            position: relative;
+        }
+        #menu {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .hidden {
+            display: none;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-image: url('header.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: left;
+            padding: 1em;
+            color: #00ff91;
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0.5em;
+            background: #000000;
+            color: #cb8f01;
+            z-index: 1;
+        }
+        footer a {
+            color: #cb8f01;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yet_Another_Online_Snake_Game</h1>
+    </header>
+    <div id="menu">
+        <button class="nes-btn is-primary" onclick="startGame()">Play</button>
+    </div>
+    <canvas id="gameCanvas" width="450" height="150" class="hidden"></canvas>
+    <footer>
+        <a href="https://antimonytrisulfide.github.io/Games" class="nes-btn is-error">Exit</a>
+        <p>My Media Links</p>
+        <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+        <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+        <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+        <p>Credits: NES.css Framework on Github</p>
+    </footer>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const canvasHeight = 20;
+        const canvasWidth = 40;
+        const tileSize = 20;
+        const canvasPixelHeight = canvasHeight * tileSize;
+        const canvasPixelWidth = canvasWidth * tileSize;
+        canvas.height = canvasPixelHeight;
+        canvas.width = canvasPixelWidth;
+
+        const snakeHeadImage = new Image();
+        const snakeBodyImage = new Image();
+        const fruitImage = new Image();
+        snakeHeadImage.src = 'l0_snake3.png'; // path to your snake head sprite
+        snakeBodyImage.src = 'l0_snake2.png'; // path to your snake body sprite
+        fruitImage.src = 'l0_snake1.png'; // path to your fruit sprite
+
+        const maxSnakeLength = 100;
+        let snake = [{ x: canvasWidth / 2, y: canvasHeight / 2 }];
+        let direction = 'RIGHT';
+        let nextDirection = direction;
+        let fruit = {};
+        let score = 0;
+        let playmode = false;
+
+        function setCanvas() {
+            for (let i = 0; i < canvasHeight; i++) {
+                for (let j = 0; j < canvasWidth; j++) {
+                    ctx.fillStyle = (i === 0 || i === canvasHeight - 1 || j === 0 || j === canvasWidth - 1) ? '#aaa' : '#000';
+                    ctx.fillRect(j * tileSize, i * tileSize, tileSize, tileSize);
+                }
+            }
+            placeFruit();
+        }
+
+        function placeFruit() {
+            fruit.x = Math.floor(Math.random() * (canvasWidth - 2)) + 1;
+            fruit.y = Math.floor(Math.random() * (canvasHeight - 2)) + 1;
+            drawTile(fruit.x, fruit.y, fruitImage);
+        }
+
+        function drawTile(x, y, image) {
+            ctx.drawImage(image, x * tileSize, y * tileSize, tileSize, tileSize);
+        }
+
+        function startGame() {
+            document.getElementById('menu').classList.add('hidden');
+            canvas.classList.remove('hidden');
+            setCanvas();
+            ctx.fillStyle = '#000';
+            playmode = true;
+            score = 0;
+            snake = [{ x: canvasWidth / 2, y: canvasHeight / 2 }];
+            direction = 'RIGHT';
+            nextDirection = direction;
+            gameLoop();
+        }
+
+        function exitGame() {
+            window.close();
+        }
+
+        function gameLoop() {
+            if (!playmode) return;
+
+            setTimeout(() => {
+                update();
+                gameLoop();
+            }, 80);
+        }
+
+        function update() {
+            let head = { ...snake[0] };
+            direction = nextDirection;  // Update the direction based on nextDirection
+            switch (direction) {
+                case 'UP': head.y -= 1; break;
+                case 'DOWN': head.y += 1; break;
+                case 'LEFT': head.x -= 1; break;
+                case 'RIGHT': head.x += 1; break;
+            }
+
+            if (head.x <= 0 || head.x >= canvasWidth - 1 || head.y <= 0 || head.y >= canvasHeight - 1 || collision(head)) {
+                playmode = false;
+                alert('Game Over! Your score: ' + score);
+                document.getElementById('menu').classList.remove('hidden');
+                canvas.classList.add('hidden');
+                return;
+            }
+
+            snake.unshift(head);
+            if (head.x === fruit.x && head.y === fruit.y) {
+                score += 1;
+                placeFruit();
+            } else {
+                const tail = snake.pop();
+                ctx.fillRect(tail.x * tileSize, tail.y * tileSize, tileSize, tileSize); // clear the tail
+            }
+
+            drawTile(head.x, head.y, snakeHeadImage);
+            snake.slice(1).forEach(segment => drawTile(segment.x, segment.y, snakeBodyImage));
+
+            // Debugging: Print the locations of the head and body segments
+            console.log("Head position:", head);
+            console.log("Body segments:");
+            snake.forEach((segment, index) => {
+                console.log(`Segment ${index}: x=${segment.x}, y=${segment.y}`);
+            });
+        }
+
+        function collision(head) {
+            // Start checking collision from the second segment of the snake
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        window.addEventListener('keydown', e => {
+            switch (e.keyCode) {
+                case 37: if (direction !== 'RIGHT') nextDirection = 'LEFT'; break;
+                case 38: if (direction !== 'DOWN') nextDirection = 'UP'; break;
+                case 39: if (direction !== 'LEFT') nextDirection = 'RIGHT'; break;
+                case 40: if (direction !== 'UP') nextDirection = 'DOWN'; break;
+            }
+        });
+
+        snakeHeadImage.onload = () => {
+            snakeBodyImage.onload = () => {
+                fruitImage.onload = () => {
+                    // Only start the game if all images are loaded
+                    document.getElementById('menu').classList.remove('hidden');
+                };
+            };
+        };
+    </script>
+</body>
+</html>

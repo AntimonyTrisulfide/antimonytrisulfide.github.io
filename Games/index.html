@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manav Marmat's Games</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #000000;
+      color: #e4a000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-image: url('../header.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      padding: 1em;
+      color: #00ff91;
+    }
+    
+    nav {
+      background: #000000;
+      border-bottom: 2px solid #a200b8;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.5em 1em;
+    }
+
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 1em;
+      font-size: 1em;
+      padding-left: 1em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #000000;
+      color: #cb8f01;
+    }
+
+    footer a {
+      color: #cb8f01;
+    }
+
+    .title {
+      color: #cb8f01;
+    }
+
+    .nes-container {
+      background-color: #000000;
+      border-color: #a200b8;
+      color: #e4a000;
+    }
+
+    .nes-container.with-title .title {
+      background-color: #000000;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    
+    .nes-container {
+      margin-bottom: 2em;
+    }
+    
+    .text {
+      text-align: justify;
+    }
+
+    .nes-card {
+      padding: 1em;
+      justify-content: center;
+      background-color: #3e524f;
+      border: 2px solid #6e59d8;
+      border-radius: 8px;
+    }
+
+    .nes-card a {
+      color: #00f00f;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <header>
+      <h1>Manav Marmat</h1>
+      <p>Welcome to my Website!</p>
+    </header>
+    <a href="https://antimonytrisulfide.github.io/">Home</a>
+    <a href="https://antimonytrisulfide.github.io/CV">CV</a>
+    <a href="https://antimonytrisulfide.github.io/Blog">Blog</a>
+    <a href="https://antimonytrisulfide.github.io/Repos">Showcase</a>
+    <a href="https://antimonytrisulfide.github.io/Games">Games</a>
+  </nav>
+
+  <div class="content">
+    <section class="nes-container with-title">
+      <h2 class="title">My Games</h2>
+      <div class="nes-container is-rounded">
+        <p class="text">My own online games:</p>
+        <!-- My Games List -->
+        <div class="nes-card">
+          <a href="https://antimonytrisulfide.github.io/Games/YAOSG">
+            <p>Yet_Another_Online_Snake_Game</p>
+          </a>
+          <p>Translation of Yet_Another_Snake_Game in JavaScript</p>
+        </div>
+        
+        <!-- You can add more games here -->
+
+      </div>
+    </section>
+
+    <section class="nes-container with-title">
+      <h2 class="title">Suggested Games</h2>
+      <div class="nes-container is-rounded">
+        <p class="text">Here are some games I recommend:</p>
+        <!-- Suggested Games List -->
+        <div class="nes-card">
+          <a href="https://antimonytrisulfide.github.io/Games/ListGame">
+            <p>Suggested Games Page</p>
+          </a>
+          <p>View all suggested games here</p>
+        </div>
+        
+        <!-- You can add more suggested games here -->
+
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>My Media Links</p>
+    <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+    <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+    <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+    <p>Credits: NES.css Framework on Github</p>
+  </footer>
+</body>
+</html>

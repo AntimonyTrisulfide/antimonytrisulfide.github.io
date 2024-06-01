@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MazeGame - Manav Marmat's Website</title>
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #000000;
+      color: #e4a000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-image: url('../../header.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      padding: 1em;
+      color: #00ff91;
+    }
+    
+    nav {
+      background: #000000;
+      border-bottom: 2px solid #a200b8;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.5em 1em;
+    }
+
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 1em;
+      font-size: 1em;
+      padding-left: 1em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #000000;
+      color: #cb8f01;
+    }
+
+    footer a {
+      color: #cb8f01;
+    }
+
+    .title {
+      color: #cb8f01;
+    }
+
+    .nes-container {
+      background-color: #000000;
+      border-color: #a200b8;
+      color: #dddddd;
+    }
+
+    .nes-container.with-title .title {
+      background-color: #000000;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+    
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    
+    .nes-container {
+      margin-bottom: 2em;
+    }
+    
+    .text {
+      text-align: justify;
+    }
+
+    .nes-card {
+      margin-bottom: 1em;
+      padding: 1em;
+      background-color: #3e524f;
+      border: 2px solid #6e59d8;
+      border-radius: 8px;
+    }
+
+    .nes-card a {
+      color: #00f00f;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <header>
+      <h1>Manav Marmat</h1>
+      <p>Welcome to my Blog!</p>
+    </header>
+    <a href="https://antimonytrisulfide.github.io/">Home</a>
+    <a href="https://antimonytrisulfide.github.io/CV">CV</a>
+    <a href="https://antimonytrisulfide.github.io/Blog">Blog</a>
+    <a href="https://antimonytrisulfide.github.io/Repos">Showcase</a>
+    <a href="https://antimonytrisulfide.github.io/Games">Games</a>
+  </nav>
+
+  <div class="content">
+    <section class="nes-container with-title">
+      <h2 class="title">About MazeGame</h2>
+      <div class="nes-container is-rounded">
+        <p class="text">
+          <image src="MAZE.png" alt="MAZE" style="width: 100%; height: auto;">
+          <ul>
+            <h3>About MazeGame</h3>
+            <li>MazeGame is a C++ based single level Maze game.</li>
+            <li>It uses no external Libraries and is based on cute block graphics</li>
+          </ul>
+          <ul>
+            <h3>The Idea</h3>
+            <li>This Project started as a challenge given by my elder brother and the elements used in this code got recycled into <a href="https://github.com/AntimonyTrisulfide/Yet_Another_Snake_Game">Yet_Another_Snake_Game</a></li>
+          </ul>
+          <ul>
+            <h3>The Implementation</h3>
+            <li>The Implementation of the Project can be found in GitHub <a href="https://github.com/AntimonyTrisulfide/Maze_Game">here</a>.</li>
+            <li>My Next Goal for this code is to add more levels in this game or make a maze generator program to extend this game.</li>
+          </ul>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>My Media Links</p>
+    <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+    <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+    <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+    <p>Credits: NES.css Framework on Github</p>
+  </footer>
+</body>
+</html>
