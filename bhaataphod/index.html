@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="H2amq0i6-PVpe2Z3l3iAmv1DRXhBwhsocjpHOfYXEU8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play BhaataPhod in the browser">
+    <title>BhaataPhod | Manav Marmat</title>
+    <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="title-section">
+          <a class="title" href="/">Manav Marmat</a>
+          <div class="social-icons">
+            <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+            <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+            <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <nav class="pages">
+          <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun" id="theme-icon"></i>
+          </button>
+          <a href="/resources/CV_Manav_Marmat.pdf" target="_blank">CV</a>
+          <a href="/research">Projects</a>
+          <a href="/blog">Blog</a>
+          <a href="/bhaataphod/" class="active">Game</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container bhaataphod-page">
+      <section class="bhaataphod-hero">
+        <div>
+          <p class="bhaataphod-kicker">Web Game</p>
+          <h1>BhaataPhod</h1>
+          <p class="bhaataphod-intro">A fast 2D arcade space shooter, rebuilt for the browser and framed inside the portfolio.</p>
+        </div>
+        <div class="bhaataphod-toolbar" aria-label="Game controls">
+          <button type="button" class="bhaataphod-control-button" id="fullscreenButton">
+            <i class="fas fa-expand"></i>
+            <span>Fullscreen</span>
+          </button>
+          <button type="button" class="bhaataphod-control-button secondary" id="restartGameButton">
+            <i class="fas fa-rotate-right"></i>
+            <span>Restart</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="bhaataphod-shell" aria-label="BhaataPhod web game">
+        <div class="bhaataphod-stage">
+          <canvas class="bhaataphod-canvas" id="canvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
+          <div class="bhaataphod-status" id="statusPanel">
+            <div class="bhaataphod-spinner" id="spinner" aria-hidden="true"></div>
+            <div class="bhaataphod-status-text" id="status">Downloading...</div>
+            <progress class="bhaataphod-progress" id="progress" max="100" value="0" hidden></progress>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container" id="footer-container">
+      <div style="text-align: center;">
+        <p>&copy; Manav Marmat. All rights reserved.</p>
+      </div>
+    </footer>
+    <button id="topbutton" onclick="scrollToTop()" class="top-button">
+      <i class="fa-solid fa-circle-arrow-up"></i>
+    </button>
+
+    <script>
+      var Module;
+
+      (function () {
+        var statusElement = document.getElementById("status");
+        var statusPanel = document.getElementById("statusPanel");
+        var progressElement = document.getElementById("progress");
+        var spinnerElement = document.getElementById("spinner");
+        var canvasElement = document.getElementById("canvas");
+        var stageElement = document.querySelector(".bhaataphod-stage");
+        var statusState = { time: Date.now(), text: "" };
+
+        function setStatus(text) {
+          if (text === statusState.text) {
+            return;
+          }
+
+          var match = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          var now = Date.now();
+          if (match && now - statusState.time < 30) {
+            return;
+          }
+
+          statusState.time = now;
+          statusState.text = text;
+
+          if (match) {
+            progressElement.value = parseInt(match[2], 10);
+            progressElement.max = parseInt(match[4], 10);
+            progressElement.hidden = false;
+            text = match[1].trim();
+          } else {
+            progressElement.value = 0;
+            progressElement.max = 100;
+            progressElement.hidden = true;
+          }
+
+          if (!text) {
+            spinnerElement.style.display = "none";
+            statusPanel.classList.add("is-hidden");
+            return;
+          }
+
+          spinnerElement.style.display = "block";
+          statusPanel.classList.remove("is-hidden");
+          statusElement.textContent = text;
+        }
+
+        canvasElement.addEventListener("webglcontextlost", function (event) {
+          setStatus("WebGL context lost. Reload the page.");
+          event.preventDefault();
+        }, false);
+
+        stageElement.addEventListener("pointerdown", function () {
+          canvasElement.focus();
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (document.activeElement === canvasElement && [" ", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(event.key) !== -1) {
+            event.preventDefault();
+          }
+        }, true);
+
+        Module = {
+          canvas: canvasElement,
+          setStatus: setStatus,
+          totalDependencies: 0,
+          locateFile: function (path) {
+            return path;
+          },
+          print: function () {
+            console.log.apply(console, arguments);
+          },
+          monitorRunDependencies: function (left) {
+            this.totalDependencies = Math.max(this.totalDependencies, left);
+            setStatus(left ? "Preparing... (" + (this.totalDependencies - left) + "/" + this.totalDependencies + ")" : "All downloads complete.");
+          }
+        };
+        window.Module = Module;
+
+        document.getElementById("fullscreenButton").addEventListener("click", function () {
+          canvasElement.focus();
+          if (Module.requestFullscreen) {
+            Module.requestFullscreen(true, false);
+          } else if (canvasElement.requestFullscreen) {
+            canvasElement.requestFullscreen();
+          }
+        });
+
+        document.getElementById("restartGameButton").addEventListener("click", function () {
+          window.location.reload();
+        });
+
+        setStatus("Downloading...");
+
+        window.onerror = window.onunhandledrejection = function () {
+          setStatus("Exception thrown, see JavaScript console.");
+          spinnerElement.style.display = "none";
+        };
+      }());
+    </script>
+    <script async src="bhaataphod.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>
