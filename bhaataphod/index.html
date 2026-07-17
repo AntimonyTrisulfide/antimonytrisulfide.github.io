@@ -76,6 +76,10 @@
     <button id="topbutton" onclick="scrollToTop()" class="top-button">
       <i class="fa-solid fa-circle-arrow-up"></i>
     </button>
+    <button type="button" class="bhaataphod-exit-focus" id="exitFocusButton" hidden>
+      <i class="fas fa-compress"></i>
+      <span>Show Page</span>
+    </button>
 
     <script>
       var Module;
@@ -87,7 +91,10 @@
         var spinnerElement = document.getElementById("spinner");
         var canvasElement = document.getElementById("canvas");
         var stageElement = document.querySelector(".bhaataphod-stage");
+        var shellElement = document.querySelector(".bhaataphod-shell");
+        var exitFocusButton = document.getElementById("exitFocusButton");
         var statusState = { time: Date.now(), text: "" };
+        var isGameReady = false;
 
         function setStatus(text) {
           if (text === statusState.text) {
@@ -117,6 +124,7 @@
           if (!text) {
             spinnerElement.style.display = "none";
             statusPanel.classList.add("is-hidden");
+            isGameReady = true;
             return;
           }
 
@@ -125,18 +133,56 @@
           statusElement.textContent = text;
         }
 
+        function fitFocusedGame() {
+          if (!document.body.classList.contains("bhaataphod-focus-mode")) {
+            return;
+          }
+
+          var shellStyle = window.getComputedStyle(shellElement);
+          var shellPaddingX = parseFloat(shellStyle.paddingLeft) + parseFloat(shellStyle.paddingRight);
+          var shellPaddingY = parseFloat(shellStyle.paddingTop) + parseFloat(shellStyle.paddingBottom);
+          var viewportPadding = window.innerWidth <= 560 ? 12 : 24;
+          var availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+          var availableHeight = Math.max(240, window.innerHeight - viewportPadding);
+          var stageWidth = Math.min(availableWidth - shellPaddingX, (availableHeight - shellPaddingY) * (16 / 9));
+          shellElement.style.width = Math.max(320, stageWidth + shellPaddingX) + "px";
+        }
+
+        function setFocusMode(active) {
+          document.body.classList.toggle("bhaataphod-focus-mode", active);
+          exitFocusButton.hidden = !active;
+
+          if (active) {
+            canvasElement.focus({ preventScroll: true });
+            requestAnimationFrame(fitFocusedGame);
+          } else {
+            shellElement.style.width = "";
+          }
+        }
+
+        function enterFocusModeWhenReady() {
+          if (isGameReady) {
+            setFocusMode(true);
+          } else {
+            canvasElement.focus();
+          }
+        }
+
         canvasElement.addEventListener("webglcontextlost", function (event) {
           setStatus("WebGL context lost. Reload the page.");
           event.preventDefault();
         }, false);
 
         stageElement.addEventListener("pointerdown", function () {
-          canvasElement.focus();
+          enterFocusModeWhenReady();
         });
 
         document.addEventListener("keydown", function (event) {
           if (document.activeElement === canvasElement && [" ", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].indexOf(event.key) !== -1) {
             event.preventDefault();
+          }
+          if (document.activeElement === canvasElement) {
+            enterFocusModeWhenReady();
           }
         }, true);
 
@@ -158,9 +204,13 @@
         window.Module = Module;
 
         document.getElementById("fullscreenButton").addEventListener("click", function () {
+          setFocusMode(true);
           canvasElement.focus();
+          if (document.pointerLockElement && document.exitPointerLock) {
+            document.exitPointerLock();
+          }
           if (Module.requestFullscreen) {
-            Module.requestFullscreen(true, false);
+            Module.requestFullscreen(false, true);
           } else if (canvasElement.requestFullscreen) {
             canvasElement.requestFullscreen();
           }
@@ -168,6 +218,21 @@
 
         document.getElementById("restartGameButton").addEventListener("click", function () {
           window.location.reload();
+        });
+
+        exitFocusButton.addEventListener("click", function () {
+          setFocusMode(false);
+        });
+
+        window.addEventListener("resize", fitFocusedGame);
+
+        document.addEventListener("fullscreenchange", function () {
+          if (document.fullscreenElement) {
+            setFocusMode(true);
+            canvasElement.style.cursor = "crosshair";
+          } else {
+            requestAnimationFrame(fitFocusedGame);
+          }
         });
 
         setStatus("Downloading...");
