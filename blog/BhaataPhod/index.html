@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BhaataPhod - Manav Marmat's Website</title>
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #000000;
+      color: #e4a000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-image: url('../../header.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      padding: 1em;
+      color: #00ff91;
+    }
+    
+    nav {
+      background: #000000;
+      border-bottom: 2px solid #a200b8;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.5em 1em;
+    }
+
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 1em;
+      font-size: 1em;
+      padding-left: 1em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #000000;
+      color: #cb8f01;
+    }
+
+    footer a {
+      color: #cb8f01;
+    }
+
+    .title {
+      color: #cb8f01;
+    }
+
+    .nes-container {
+      background-color: #000000;
+      border-color: #a200b8;
+      color: #dddddd;
+    }
+
+    .nes-container.with-title .title {
+      background-color: #000000;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+    
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    
+    .nes-container {
+      margin-bottom: 2em;
+    }
+    
+    .text {
+      text-align: justify;
+    }
+
+    .nes-card {
+      margin-bottom: 1em;
+      padding: 1em;
+      background-color: #3e524f;
+      border: 2px solid #6e59d8;
+      border-radius: 8px;
+    }
+
+    .nes-card a {
+      color: #00f00f;
+    }
+
+    /* Custom styles for the YouTube video frame */
+    .video-container {
+      margin-top: 2em;
+      text-align: center;
+    }
+
+    .video-frame {
+      width: 100%;
+      max-width: 800px;
+      border: 5px solid #a200b8;
+      border-radius: 8px;
+    }
+
+    .foottext {
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <header>
+      <h1>Manav Marmat</h1>
+      <p>Welcome to my Blog!</p>
+    </header>
+    <a href="https://antimonytrisulfide.github.io/">Home</a>
+    <a href="https://antimonytrisulfide.github.io/CV">CV</a>
+    <a href="https://antimonytrisulfide.github.io/Blog">Blog</a>
+    <a href="https://antimonytrisulfide.github.io/Repos">Showcase</a>
+    <a href="https://antimonytrisulfide.github.io/Games">Games</a>
+  </nav>
+
+  <div class="content">
+    <section class="nes-container with-title">
+      <h2 class="title">About BhaataPhod</h2>
+      <div class="nes-container is-rounded">
+        <p class="text">
+          <image src="mainbackground.png" alt="BhaataPhod" style="width: 100%; height: auto;">
+          <ul>
+            <h3>About BhaataPhod</h3>
+            <li>I did immense "MaathaPhod" to create "BhaataPhod" <br>(baa dum tssh) pun intended! LOL</li>
+          </ul>
+          <ul>
+            <h3>How it all started</h3>
+            <p>As a aspiring Game Developer i was looking for ideas to create a game on for my learning, then i stumbled upon a old atari disk i had in my shelf and thought of the legendary game "Asteroids", i thought i could create a "Asteroids" clone and maybe add a few elements of my own.</p>
+          </ul>
+          <ul>
+            <h3>The Implementation</h3>
+            <p>I coded this game entirely in a single C++ script taking help of SFML 2.6.1 Library and using AI to help me debug this program, coding this game was a hella ride</p>
+            <p>All of the pixel artwork used in this game is made by me and yeah i used PisKel for designing them</p>
+            <p>The shockwave powerup, UFOs and asset management were the most challenging works of this game</p>
+            <br>
+            <li>The Implementation of the Project can be found in GitHub <a href="https://github.com/AntimonyTrisulfide/BhaataPhod">here</a>.</li>
+          </ul>
+        </p>
+      </div>
+    </section>
+
+  <!-- Video Container -->
+  <section class="nes-container with-title">
+    <h2 class="title">Gameplay Video and Download Link</h2>
+    <div class="video-container">
+      <video class="video-frame" controls>
+        <source src="Bhaata Phod 2024-06-18 00-09-05.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <iframe frameborder="0" src="https://itch.io/embed/2780643?border_width=5&amp;bg_color=728194&amp;fg_color=001a79&amp;link_color=ed00ce&amp;border_color=000000" width="560" height="175"><a href="https://antimonytrisulfide.itch.io/bhaataphod">BhaataPhod by AntimonyTrisulfide</a></iframe>
+    </div>
+  </section>
+  </div>
+
+  <footer>
+    <p>My Media Links</p>
+    <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope fa-2xl"></i></a>
+    <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord fa-2xl"></i></a>
+    <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin fa-2xl"></i></a>
+    <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github fa-2xl"></i></a>
+    <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit fa-2xl"></i></a>
+    <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram fa-2xl"></i></a>
+  </footer>  
+    <p class="foottext">Credits: NES.css Framework on Github</p>
+</body>
+</html>

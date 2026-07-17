@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Snake Game | Manav Marmat">
+    <title>Snake Game | Manav Marmat</title>
+    <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+    <style>
+      .game-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        padding: 20px;
+      }
+
+      .game-canvas {
+        border: 3px solid #e74c3c;
+        border-radius: 10px;
+        background-color: #0f1419;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        max-width: 90vw;
+        max-height: 70vh;
+      }
+
+      .game-menu {
+        text-align: center;
+        background: rgba(26, 26, 46, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(231, 76, 60, 0.3);
+        margin: 20px;
+        max-width: 500px;
+      }
+
+      .game-button {
+        background: linear-gradient(45deg, #e74c3c, #f39c12);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 18px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-family: 'Karma';
+        font-weight: bold;
+        margin: 10px;
+      }
+
+      .game-button:hover {
+        filter: drop-shadow(0 0 12px rgba(231, 76, 60, 0.6));
+      }
+
+      .game-info {
+        background: rgba(44, 62, 80, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 2px solid rgba(231, 76, 60, 0.3);
+        color: #ecf0f1;
+        max-width: 600px;
+      }
+
+      .score-display {
+        font-size: 24px;
+        font-weight: bold;
+        color: #f39c12;
+        margin: 10px 0;
+      }
+
+      .controls-info {
+        font-size: 16px;
+        color: #bdc3c7;
+        margin: 15px 0;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .game-canvas {
+          max-width: 95vw;
+          max-height: 60vh;
+        }
+        
+        .game-menu {
+          margin: 10px;
+          padding: 20px;
+        }
+        
+        .game-button {
+          padding: 12px 24px;
+          font-size: 16px;
+        }
+        
+        .score-display {
+          font-size: 20px;
+        }
+      }
+
+      /* Touch controls for mobile */
+      .mobile-controls {
+        display: none;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin: 20px 0;
+        max-width: 200px;
+      }
+
+      .mobile-controls button {
+        background: rgba(231, 76, 60, 0.8);
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+
+      .mobile-controls button:hover {
+        background: rgba(231, 76, 60, 1);
+      }
+
+      @media (max-width: 768px) {
+        .mobile-controls {
+          display: grid;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="title-section">
+          <a class="title" href="/">Manav Marmat</a>
+          <div class="social-icons">
+            <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+            <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+            <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <nav class="pages">
+          <a href="/resources/CV_Manav_Marmat.pdf" target="_blank">CV</a>
+          <a href="/research">Projects</a>
+          <a href="/blog">Blog</a>
+          <a href="/extra" class="active">Extra</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="game-container">
+        
+        <div id="gameMenu" class="game-menu">
+          <h2 style="color: #e74c3c; margin-top: 0;">Yet Another Online Snake Game</h2>
+          <p style="color: #ecf0f1;">Guide your snake to collect food while avoiding walls and your own tail!</p>
+          
+          <div class="controls-info">
+            <p><strong>Desktop:</strong> Use arrow keys to move</p>
+            <p><strong>Mobile:</strong> Use the touch controls below the game</p>
+          </div>
+          
+          <button class="game-button" onclick="startGame()">
+            <i class="fas fa-play"></i> Start Game
+          </button>
+          
+          <div style="margin-top: 20px;">
+            <a href="/extra/games" class="game-button" style="background: linear-gradient(45deg, #7f8c8d, #95a5a6); text-decoration: none; display: inline-block;">
+              <i class="fas fa-arrow-left"></i> Back to Games
+            </a>
+          </div>
+        </div>
+
+        <div id="gameArea" class="hidden">
+          <div class="game-info">
+            <div class="score-display">Score: <span id="scoreValue">0</span></div>
+            <div style="text-align: center;">
+              <button class="game-button" onclick="pauseGame()" id="pauseBtn">
+                <i class="fas fa-pause"></i> Pause
+              </button>
+              <button class="game-button" onclick="endGame()" style="background: linear-gradient(45deg, #e74c3c, #c0392b);">
+                <i class="fas fa-stop"></i> End Game
+              </button>
+            </div>
+          </div>
+          
+          <canvas id="gameCanvas" class="game-canvas"></canvas>
+          
+          <div class="mobile-controls" id="mobileControls">
+            <div></div>
+            <button onclick="changeDirection('UP')">▲</button>
+            <div></div>
+            <button onclick="changeDirection('LEFT')">◄</button>
+            <div></div>
+            <button onclick="changeDirection('RIGHT')">►</button>
+            <div></div>
+            <button onclick="changeDirection('DOWN')">▼</button>
+            <div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer class="container" id="footer-container">
+      <div style="text-align: center;">
+        <p>&copy; Manav Marmat. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <button id="topbutton" onclick="scrollToTop()" class="top-button">
+      <i class="fa-solid fa-circle-arrow-up"></i>
+    </button>
+
+    <script>
+      // Game variables
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+      let canvasHeight, canvasWidth, tileSize;
+      let canvasPixelHeight, canvasPixelWidth;
+      
+      // Game state
+      let snake = [];
+      let direction = 'RIGHT';
+      let nextDirection = direction;
+      let fruit = {};
+      let score = 0;
+      let playmode = false;
+      let isPaused = false;
+      let gameLoopId;
+
+      // Load images
+      const snakeHeadImage = new Image();
+      const snakeBodyImage = new Image();
+      const fruitImage = new Image();
+      snakeHeadImage.src = 'l0_snake3.png';
+      snakeBodyImage.src = 'l0_snake2.png';
+      fruitImage.src = 'l0_snake1.png';
+
+      // Initialize responsive canvas
+      function initCanvas() {
+        const maxWidth = Math.min(window.innerWidth * 0.9, 800);
+        const maxHeight = Math.min(window.innerHeight * 0.6, 600);
+        
+        // Calculate optimal tile size
+        tileSize = Math.max(15, Math.min(25, Math.floor(maxWidth / 40)));
+        
+        // Calculate grid dimensions
+        canvasWidth = Math.floor(maxWidth / tileSize);
+        canvasHeight = Math.floor(maxHeight / tileSize);
+        
+        // Ensure minimum dimensions
+        canvasWidth = Math.max(20, canvasWidth);
+        canvasHeight = Math.max(15, canvasHeight);
+        
+        // Set actual pixel dimensions
+        canvasPixelWidth = canvasWidth * tileSize;
+        canvasPixelHeight = canvasHeight * tileSize;
+        
+        canvas.width = canvasPixelWidth;
+        canvas.height = canvasPixelHeight;
+      }
+
+      function setCanvas() {
+        // Draw border and background
+        for (let i = 0; i < canvasHeight; i++) {
+          for (let j = 0; j < canvasWidth; j++) {
+            ctx.fillStyle = (i === 0 || i === canvasHeight - 1 || j === 0 || j === canvasWidth - 1) 
+              ? '#e74c3c' : '#0f1419';
+            ctx.fillRect(j * tileSize, i * tileSize, tileSize, tileSize);
+          }
+        }
+        placeFruit();
+      }
+
+      function placeFruit() {
+        do {
+          fruit.x = Math.floor(Math.random() * (canvasWidth - 2)) + 1;
+          fruit.y = Math.floor(Math.random() * (canvasHeight - 2)) + 1;
+        } while (snake.some(segment => segment.x === fruit.x && segment.y === fruit.y));
+        
+        drawTile(fruit.x, fruit.y, fruitImage);
+      }
+
+      function drawTile(x, y, image) {
+        ctx.drawImage(image, x * tileSize, y * tileSize, tileSize, tileSize);
+      }
+
+      function startGame() {
+        initCanvas();
+        document.getElementById('gameMenu').classList.add('hidden');
+        document.getElementById('gameArea').classList.remove('hidden');
+        
+        setCanvas();
+        playmode = true;
+        isPaused = false;
+        score = 0;
+        direction = 'RIGHT';
+        nextDirection = direction;
+        
+        // Initialize snake in center
+        snake = [{ x: Math.floor(canvasWidth / 2), y: Math.floor(canvasHeight / 2) }];
+        
+        updateScore();
+        gameLoop();
+      }
+
+      function pauseGame() {
+        isPaused = !isPaused;
+        const pauseBtn = document.getElementById('pauseBtn');
+        if (isPaused) {
+          pauseBtn.innerHTML = '<i class="fas fa-play"></i> Resume';
+          clearTimeout(gameLoopId);
+        } else {
+          pauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+          gameLoop();
+        }
+      }
+
+      function endGame() {
+        playmode = false;
+        isPaused = false;
+        clearTimeout(gameLoopId);
+        document.getElementById('gameMenu').classList.remove('hidden');
+        document.getElementById('gameArea').classList.add('hidden');
+        document.getElementById('pauseBtn').innerHTML = '<i class="fas fa-pause"></i> Pause';
+      }
+
+      function gameLoop() {
+        if (!playmode || isPaused) return;
+
+        gameLoopId = setTimeout(() => {
+          update();
+          gameLoop();
+        }, Math.max(60, 120 - score * 2)); // Speed increases with score
+      }
+
+      function update() {
+        let head = { ...snake[0] };
+        direction = nextDirection;
+        
+        switch (direction) {
+          case 'UP': head.y -= 1; break;
+          case 'DOWN': head.y += 1; break;
+          case 'LEFT': head.x -= 1; break;
+          case 'RIGHT': head.x += 1; break;
+        }
+
+        // Check collisions
+        if (head.x <= 0 || head.x >= canvasWidth - 1 || 
+            head.y <= 0 || head.y >= canvasHeight - 1 || 
+            collision(head)) {
+          
+          playmode = false;
+          setTimeout(() => {
+            alert(`Game Over! Your final score: ${score}`);
+            endGame();
+          }, 100);
+          return;
+        }
+
+        snake.unshift(head);
+
+        // Check if fruit eaten
+        if (head.x === fruit.x && head.y === fruit.y) {
+          score += 1;
+          updateScore();
+          placeFruit();
+        } else {
+          const tail = snake.pop();
+          // Clear tail
+          ctx.fillStyle = '#0f1419';
+          ctx.fillRect(tail.x * tileSize, tail.y * tileSize, tileSize, tileSize);
+        }
+
+        // Draw snake
+        drawTile(head.x, head.y, snakeHeadImage);
+        snake.slice(1).forEach(segment => drawTile(segment.x, segment.y, snakeBodyImage));
+      }
+
+      function collision(head) {
+        for (let i = 1; i < snake.length; i++) {
+          if (head.x === snake[i].x && head.y === snake[i].y) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function updateScore() {
+        document.getElementById('scoreValue').textContent = score;
+      }
+
+      function changeDirection(newDirection) {
+        if (playmode && !isPaused) {
+          switch (newDirection) {
+            case 'UP': if (direction !== 'DOWN') nextDirection = 'UP'; break;
+            case 'DOWN': if (direction !== 'UP') nextDirection = 'DOWN'; break;
+            case 'LEFT': if (direction !== 'RIGHT') nextDirection = 'LEFT'; break;
+            case 'RIGHT': if (direction !== 'LEFT') nextDirection = 'RIGHT'; break;
+          }
+        }
+      }
+
+      // Keyboard controls
+      window.addEventListener('keydown', e => {
+        if (!playmode || isPaused) return;
+        
+        switch (e.keyCode) {
+          case 37: changeDirection('LEFT'); break;
+          case 38: changeDirection('UP'); break;
+          case 39: changeDirection('RIGHT'); break;
+          case 40: changeDirection('DOWN'); break;
+          case 32: // Spacebar for pause
+            e.preventDefault();
+            pauseGame();
+            break;
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener('resize', () => {
+        if (playmode) {
+          // Restart game with new dimensions
+          alert('Window resized! Game will restart with new dimensions.');
+          endGame();
+        }
+      });
+
+      // Wait for images to load before enabling start button
+      let imagesLoaded = 0;
+      function imageLoaded() {
+        imagesLoaded++;
+        if (imagesLoaded === 3) {
+          // All images loaded, game ready
+          console.log('All game images loaded successfully');
+        }
+      }
+
+      snakeHeadImage.onload = imageLoaded;
+      snakeBodyImage.onload = imageLoaded;
+      fruitImage.onload = imageLoaded;
+    </script>
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>

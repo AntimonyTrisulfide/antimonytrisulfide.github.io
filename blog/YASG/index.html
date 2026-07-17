@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YASG - Manav Marmat's Website</title>
+  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #000000;
+      color: #e4a000;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-image: url('../../header.jpg');
+      background-size: cover;
+      background-position: center;
+      text-align: left;
+      padding: 1em;
+      color: #00ff91;
+    }
+    
+    nav {
+      background: #000000;
+      border-bottom: 2px solid #a200b8;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.5em 1em;
+    }
+
+    nav a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 1em;
+      font-size: 1em;
+      padding-left: 1em;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1em;
+      background: #000000;
+      color: #cb8f01;
+    }
+
+    footer a {
+      color: #cb8f01;
+    }
+
+    .title {
+      color: #cb8f01;
+    }
+
+    .nes-container {
+      background-color: #000000;
+      border-color: #a200b8;
+      color: #dddddd;
+    }
+
+    .nes-container.with-title .title {
+      background-color: #000000;
+    }
+
+    .content {
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+    
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+    
+    .nes-container {
+      margin-bottom: 2em;
+    }
+    
+    .text {
+      text-align: justify;
+    }
+
+    .nes-card {
+      margin-bottom: 1em;
+      padding: 1em;
+      background-color: #3e524f;
+      border: 2px solid #6e59d8;
+      border-radius: 8px;
+    }
+
+    .nes-card a {
+      color: #00f00f;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <header>
+      <h1>Manav Marmat</h1>
+      <p>Welcome to my Blog!</p>
+    </header>
+    <a href="https://antimonytrisulfide.github.io/">Home</a>
+    <a href="https://antimonytrisulfide.github.io/CV">CV</a>
+    <a href="https://antimonytrisulfide.github.io/Blog">Blog</a>
+    <a href="https://antimonytrisulfide.github.io/Repos">Showcase</a>
+    <a href="https://antimonytrisulfide.github.io/Games">Games</a>
+  </nav>
+
+  <div class="content">
+    <section class="nes-container with-title">
+      <h2 class="title">About YetAnotherSnakeGame</h2>
+      <div class="nes-container is-rounded">
+        <p class="text">
+          <image src="YASG.png" alt="YASG" style="width: 100%; height: auto;">
+          <ul>
+            <h3>About YetAnotherSnakeGame</h3>
+            <li>YetAnotherSnakeGame is a C++ based snake game.</li>
+            <li>It uses no external Libraries and is based on cute block graphics</li>
+            <li>As of 01-06-2024 it is one of my favorite codes and i still play it myself just because of its simplicity, and found a bug whilist playing it myself LOL.</li>
+          </ul>
+          <ul>
+            <h3>The Idea</h3>
+            <li>The Project was suggested by my elder brother <a href="https://uv-1999.github.io/">Piyush Marmat</a>.</li>
+            <li>My Brother knew my interest in GameDev so this code was my start for that path.</li>
+            <li>References from GeeksforGeeks helped me to fix my length incrementing logic.</li>
+          </ul>
+          <ul>
+            <h3>The Implementation</h3>
+            <li>The Project also gave me experience with Visual Studio 2021 IDE</li>
+            <li>The Implementation of the Project can be found in GitHub <a href="https://github.com/AntimonyTrisulfide/Yet_Another_Snake_Game">here</a>.</li>
+            <li>My Next Goal for this code is to translate the code into JavaScript with which i will be able to add that to my website to play.</li>
+          </ul>
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>My Media Links</p>
+    <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+    <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+    <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+    <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+    
+    <p>Credits: NES.css Framework on Github</p>
+  </footer>
+</body>
+</html>

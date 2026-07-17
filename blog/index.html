@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="H2amq0i6-PVpe2Z3l3iAmv1DRXhBwhsocjpHOfYXEU8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manav Marmat">
+    <title>Blog | Manav Marmat</title>
+    <link href="https://fonts.googleapis.com/css?family=Karma" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/resources/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/main.css">
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="title-section">
+          <a class="title" href="/">Manav Marmat</a>
+          <div class="social-icons">
+            <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
+            <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
+            <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <nav class="pages">
+          <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun" id="theme-icon"></i>
+          </button>
+          <a href="/resources/CV_Manav_Marmat.pdf" target="_blank">CV</a>
+          <a href="/research">Projects</a>
+          <a href="/blog" class="active">Blog</a>
+        </nav>
+        
+      </div>
+    </header>
+<div class="container">
+
+<div class="blog-container">
+  <div class="blog-main">
+    <div class="blog-grid" id="blogGrid">
+      <a href="/blog/IIScInternship" class="blog-card" data-tags="internship research iisc graphics srfp">
+        <div class="blog-card-image">
+          <div class="blog-card-placeholder">
+            <span>VGL · IISc</span>
+          </div>
+        </div>
+        <div class="blog-card-content">
+          <h3>My First Internship Journey</h3>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">2024</span>
+            <div class="blog-card-tags">
+              <span class="blog-tag">Internship</span>
+              <span class="blog-tag">IISc</span>
+              <span class="blog-tag">Research</span>
+            </div>
+          </div>
+          <p>From a hesitant second-year student to contributing WebGL tools at IISc&apos;s Visualization & Graphics Lab during the IASc Summer Research Fellowship.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="blog-sidebar">
+    <div class="blog-search">
+      <h3>Search Articles</h3>
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search articles..." id="blogSearch">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+    </div>
+
+    <div class="blog-filters">
+      <h3>Filter by Topic</h3>
+      <div class="filter-tags">
+        <div class="filter-tag" data-filter="all">All</div>
+        <div class="filter-tag" data-filter="game">Game Dev</div>
+        <div class="filter-tag" data-filter="c++">C++</div>
+        <div class="filter-tag" data-filter="vision">Computer Vision</div>
+        <div class="filter-tag" data-filter="arduino">Arduino</div>
+        <div class="filter-tag" data-filter="algorithms">Algorithms</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Blog search functionality
+document.getElementById('blogSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    filterCards(searchTerm);
+});
+
+// Filter functionality
+document.querySelectorAll('.filter-tag').forEach(tag => {
+    tag.addEventListener('click', function() {
+        // Remove active class from all tags
+        document.querySelectorAll('.filter-tag').forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tag
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        if (filter === 'all') {
+            document.querySelectorAll('.blog-card').forEach(card => {
+                card.classList.remove('hidden');
+            });
+        } else {
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const tags = card.getAttribute('data-tags').toLowerCase();
+                if (tags.includes(filter)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+        
+        // Clear search input when using filters
+        document.getElementById('blogSearch').value = '';
+    });
+});
+
+function filterCards(searchTerm) {
+    const blogCards = document.querySelectorAll('.blog-card');
+    
+    blogCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const description = card.querySelector('p').textContent.toLowerCase();
+        const tags = card.getAttribute('data-tags').toLowerCase();
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm) || tags.includes(searchTerm)) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
+}
+
+// Set "All" as default active filter
+document.querySelector('.filter-tag[data-filter="all"]').classList.add('active');
+</script>
+
+</div>
+    <footer class="container" id="footer-container">
+      <div style="text-align: center;">
+        <p>&copy; Manav Marmat. All rights reserved.</p>
+      </div>
+    </footer><button id="topbutton" onclick="scrollToTop()" class="top-button">
+          <i class="fa-solid fa-circle-arrow-up"></i>
+        </button>
+    
+    <!-- Floating Music Widget -->
+    <!-- <div class="music-widget">
+      <button class="music-toggle" onclick="toggleMusicPlayer()">
+        <i class="fas fa-music"></i>
+      </button>
+      <div class="music-player" id="musicPlayer">
+        <iframe class="spotify-embed" 
+                src="https://open.spotify.com/embed/playlist/7HeMoyNUUjqRI46W5VnLcF?utm_source=generator&theme=0" 
+                allowfullscreen 
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                loading="lazy">
+        </iframe>
+      </div>
+    </div> -->
+    
+    <script type="text/javascript" src="/main.js"></script>
+  </body>
+</html>
