@@ -19,7 +19,7 @@
           <div class="social-icons">
             <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
             <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
-            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/manav-marmat-2k5/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -29,6 +29,7 @@
           <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
             <i class="fas fa-sun" id="theme-icon"></i>
           </button>
+          <a href="/">Home</a>
           <a href="/resources/CV_Manav_Marmat.pdf" target="_blank">CV</a>
           <a href="/research">Projects</a>
           <a href="/blog">Blog</a>
@@ -39,15 +40,14 @@
 
     <main class="container bhaataphod-page">
       <section class="bhaataphod-hero">
-        <div>
-          <p class="bhaataphod-kicker">Web Game</p>
-          <h1>BhaataPhod</h1>
-          <p class="bhaataphod-intro">A fast 2D arcade space shooter, rebuilt for the browser and framed inside the portfolio.</p>
-        </div>
         <div class="bhaataphod-toolbar" aria-label="Game controls">
           <button type="button" class="bhaataphod-control-button" id="fullscreenButton">
             <i class="fas fa-expand"></i>
             <span>Fullscreen</span>
+          </button>
+          <button type="button" class="bhaataphod-control-button secondary" id="muteGameButton" aria-pressed="false">
+            <i class="fas fa-volume-high"></i>
+            <span>Mute</span>
           </button>
           <button type="button" class="bhaataphod-control-button secondary" id="restartGameButton">
             <i class="fas fa-rotate-right"></i>
@@ -56,7 +56,7 @@
         </div>
       </section>
 
-      <section class="bhaataphod-shell" aria-label="BhaataPhod web game">
+      <section class="bhaataphod-shell" aria-label="BhaataPhod browser game">
         <div class="bhaataphod-stage">
           <canvas class="bhaataphod-canvas" id="canvas" oncontextmenu="event.preventDefault()" tabindex="0"></canvas>
           <div class="bhaataphod-status" id="statusPanel">
@@ -68,9 +68,12 @@
       </section>
     </main>
 
-    <footer class="container" id="footer-container">
-      <div style="text-align: center;">
-        <p>&copy; Manav Marmat. All rights reserved.</p>
+    <footer class="site-footer" id="footer-container">
+      <div class="footer-inner">
+        <div>
+          <span class="footer-brand">Manav Marmat</span>
+        </div>
+        <p class="footer-meta">&copy; Manav Marmat. All rights reserved.</p>
       </div>
     </footer>
     <button id="topbutton" onclick="scrollToTop()" class="top-button">
@@ -93,8 +96,35 @@
         var stageElement = document.querySelector(".bhaataphod-stage");
         var shellElement = document.querySelector(".bhaataphod-shell");
         var exitFocusButton = document.getElementById("exitFocusButton");
+        var muteGameButton = document.getElementById("muteGameButton");
         var statusState = { time: Date.now(), text: "" };
         var isGameReady = false;
+        var isGameMuted = localStorage.getItem("bhaataphod-muted") === "true";
+
+        function getGameAudioContext() {
+          return (window.SDL2 && window.SDL2.audioContext) ||
+            (window.Module && window.Module.SDL2 && window.Module.SDL2.audioContext) ||
+            null;
+        }
+
+        function updateMuteButton() {
+          muteGameButton.setAttribute("aria-pressed", String(isGameMuted));
+          muteGameButton.querySelector("i").className = isGameMuted ? "fas fa-volume-xmark" : "fas fa-volume-high";
+          muteGameButton.querySelector("span").textContent = isGameMuted ? "Unmute" : "Mute";
+        }
+
+        function applyMuteState(allowResume) {
+          var context = getGameAudioContext();
+          if (!context) {
+            return;
+          }
+
+          if (isGameMuted && context.state !== "suspended") {
+            context.suspend().catch(function () {});
+          } else if (!isGameMuted && allowResume && context.state === "suspended") {
+            context.resume().catch(function () {});
+          }
+        }
 
         function setStatus(text) {
           if (text === statusState.text) {
@@ -125,6 +155,7 @@
             spinnerElement.style.display = "none";
             statusPanel.classList.add("is-hidden");
             isGameReady = true;
+            applyMuteState();
             return;
           }
 
@@ -145,7 +176,10 @@
           var availableWidth = Math.max(320, window.innerWidth - viewportPadding);
           var availableHeight = Math.max(240, window.innerHeight - viewportPadding);
           var stageWidth = Math.min(availableWidth - shellPaddingX, (availableHeight - shellPaddingY) * (16 / 9));
+          var stageHeight = stageWidth * (9 / 16);
           shellElement.style.width = Math.max(320, stageWidth + shellPaddingX) + "px";
+          stageElement.style.height = stageHeight + "px";
+          stageElement.style.aspectRatio = "auto";
         }
 
         function setFocusMode(active) {
@@ -157,6 +191,8 @@
             requestAnimationFrame(fitFocusedGame);
           } else {
             shellElement.style.width = "";
+            stageElement.style.height = "";
+            stageElement.style.aspectRatio = "";
           }
         }
 
@@ -220,11 +256,20 @@
           window.location.reload();
         });
 
+        muteGameButton.addEventListener("click", function () {
+          isGameMuted = !isGameMuted;
+          localStorage.setItem("bhaataphod-muted", String(isGameMuted));
+          updateMuteButton();
+          applyMuteState(true);
+        });
+
         exitFocusButton.addEventListener("click", function () {
           setFocusMode(false);
         });
 
         window.addEventListener("resize", fitFocusedGame);
+        updateMuteButton();
+        window.setInterval(applyMuteState, 750);
 
         document.addEventListener("fullscreenchange", function () {
           if (document.fullscreenElement) {

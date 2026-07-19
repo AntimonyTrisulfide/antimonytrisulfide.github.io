@@ -18,7 +18,7 @@
           <div class="social-icons">
             <a href="mailto:2311401159@stu.manit.ac.in" class="icon-link" target="_blank"><i class="far fa-envelope"></i></a>
             <a href="https://discordapp.com/users/arsenictrioxide" class="icon-link" target="_blank"><i class="fa-brands fa-discord"></i></a>
-            <a href="https://www.linkedin.com/in/manav-marmat-b9079b289/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.linkedin.com/in/manav-marmat-2k5/" class="icon-link" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/AntimonyTrisulfide" class="icon-link" target="_blank"><i class="fab fa-github"></i></a>
             <a href="https://www.reddit.com/user/Ok_Chair_404" class="icon-link" target="_blank"><i class="fab fa-reddit"></i></a>
             <a href="https://www.instagram.com/marmat_m_2k5/" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -28,9 +28,11 @@
           <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()">
             <i class="fas fa-sun" id="theme-icon"></i>
           </button>
+          <a href="/">Home</a>
           <a href="/resources/CV_Manav_Marmat.pdf" target="_blank">CV</a>
           <a href="/research">Projects</a>
           <a href="/blog" class="active">Blog</a>
+          <a href="/bhaataphod/">Game</a>
         </nav>
       </div>
     </header>
@@ -61,7 +63,7 @@
             In my college, Maulana Azad National Institute of Technology, or in short “MANIT”,  there is a WhatsApp group in which there are both professors and students. One day, Prof. Rahul Chourasiya sent us an advertisement for the Indian Academy of Sciences, Summer Research Fellowship Programme, and he mentioned, “Students having a high CGPA are more likely to be selected”. I was having an overall CGPA of 8.12/10, so I was reluctant at first to even fill out the form, but after consulting with my BFF (my elder brother), I eventually decided to give it a shot and forgot about it, thinking I might not even get a reply.
           </p>
           <p>
-            I am an Electronics and Communication Engineering Undergrad with a career focus in computer graphics, vision and game development. My career plan is fixed as a Game developer since I was in 8th standard, as games were the only thing that kept me engaged <i>(I am a bit introverted, lol, plus I never had great friends in school)</i>.
+            I am now a final-year Electronics and Communication Engineering undergraduate, with my main interests in computer graphics, computer vision, and game development. That direction started early for me: games were the thing that kept me curious enough to keep building.
           </p>
           <p>
             Before this internship, I developed an indie game humorously named “BhaataPhod”, because of the immense “MaathaPhod” (i.e. Brainstorming). It was the only star thing in my resume at that time, and I was only counting on that single project for the application.
@@ -140,14 +142,14 @@
         <section class="article-section" id="learning-curve">
           <h2>5. Learning Curve &amp; Struggles</h2>
           <p>
-            The one and only struggle I had in the entire project was to implement a cylindrical impostor geometry and make it consistent with the L joints for edges (I am sorry for the jargon). Impostor geometry is basically a fake 2D or 3D low-poly object that is shaded as a high-quality object. I had to make a cylindrical Impostor for the edges and a spherical one for the nodes.
+            The hardest part was making cylindrical impostors for edges and spherical impostors for nodes. Instead of drawing heavy geometry, I drew simple shapes and shaded them to look smooth, which kept the visualization fast and readable.
           </p>
-          <div class="article-gallery" style="display: block;">
-            <figure class="photo-card" style="max-width: 100%; margin-bottom: 2rem;">
+          <div class="article-gallery">
+            <figure class="photo-card">
               <img src="Contour-Tree-Visualizer.png" alt="Contour Tree Visualizer showing edges and nodes" loading="lazy" class="gallery-img">
               <figcaption>My Contour Tree Visualizer with edge selection interface</figcaption>
             </figure>
-            <figure class="photo-card" style="max-width: 100%;">
+            <figure class="photo-card">
               <img src="Impostor-Explanation.jpg" alt="Hand-drawn spherical impostor geometry explanation" loading="lazy" class="gallery-img">
               <figcaption>Hand-drawn impostor explanation. <a href="https://iquilezles.org/articles/intersectors/" target="_blank">Inspired by Inigo Quilez&apos;s intersector articles.</a></figcaption>
             </figure>
@@ -188,10 +190,6 @@
 
         <section class="article-section" id="gallery">
           <h2>Photo Gallery</h2>
-          <p class="article-gallery-intro">
-            A few frames that still smell like petrichor, solder flux and filter coffee—from lab lunches to late-evening walks across the IISc campus.
-          </p>
-          
           <div class="photo-collage">
             <figure class="photo-card">
               <img src="Photos/All SRF Group Photo.jpg" alt="All SRF Group Photo" loading="lazy" class="gallery-img">
@@ -281,9 +279,12 @@
       </div>
     </div>
 
-    <footer class="container" id="footer-container">
-      <div style="text-align: center;">
-        <p>&copy; Manav Marmat. All rights reserved.</p>
+    <footer class="site-footer" id="footer-container">
+      <div class="footer-inner">
+        <div>
+          <span class="footer-brand">Manav Marmat</span>
+        </div>
+        <p class="footer-meta">&copy; Manav Marmat. All rights reserved.</p>
       </div>
     </footer>
     <button id="topbutton" onclick="scrollToTop()" class="top-button">

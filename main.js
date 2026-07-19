@@ -14,10 +14,9 @@ collapsibles.forEach(function(collapsible) {
     });
 });
 
-// Scroll to top functionality and sticky header shrink
+// Scroll to top functionality
 window.onscroll = function() {
     const btn = document.getElementById("topbutton");
-    const header = document.querySelector('header');
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     
     if (btn) {
@@ -28,14 +27,6 @@ window.onscroll = function() {
         }
     }
     
-    // Shrink header on scroll
-    if (header) {
-        if (scrollTop > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
 };
 
 function scrollToTop() {
