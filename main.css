@@ -2596,8 +2596,12 @@ hr {
 }
 
 .profile-content p {
-  max-width: 78ch;
+  width: 100%;
+  max-width: none;
   margin: 0 0 0.75rem;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-word;
 }
 
 .leetcode-section,
